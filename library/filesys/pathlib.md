@@ -1,7 +1,41 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
-**&nbsp;&nbsp;&nbsp;**
-**[`Opening a file`](#opening-a-file)**__,__
+**[`as_posix()`](#path-as_posix)**__,__'
+**[`as_uri()`](#path-as_uri)**__,__'
+**[`cwd()`](#get-path)**__,__'
+**[`drive`](#other)**__,__'
+**[`exists()`](#path-properties)**__,__'
+**[`glob()`](#listing-files)**__,__'
+**[`home()`](#get-path)**__,__'
+**[`is_dir()`](#path-properties)**__,__'
+**[`is_file()`](#path-properties)**__,__'
+**[`iterdir()`](#directory-contents)**__,__'
+**[`mkdir()`](#create-a-new-directory)**__,__'
+**[`name`](#path-name)**__,__'
+**[`open()`](#opening-a-file)**__,__'
+**[`parent`](#path-parent)**__,__'
+**[`parents`](#path-parents)**__,__'
+**[`parts`](#other)**__,__'
+**[`Path()`](#get-path)**__,__'
+**[`PurePosixPath()`](#pureposixpath)**__,__'
+**[`PureWindowsPath()`](#purewindowspath)**__,__'
+**[`read_bytes()`](#contents)**__,__'
+**[`read_text()`](#contents)**__,__'
+**[`rename()`](#rename)**__,__'
+**[`replace()`](#rename)**__,__'
+**[`resolve()`](#make-the-path-absolute)**__,__'
+**[`rmdir()`](#remove-empty-directory)**__,__'
+**[`root`](#other)**__,__'
+**[`samefile()`](#other)**__,__'
+**[`stem`](#path-stem)**__,__'
+**[`suffix`](#path-suffix)**__,__'
+**[`suffixes`](#path-suffixes)**__,__'
+**[`touch()`](#other)**__,__'
+**[`with_name()`](#path-with_namename)**__,__'
+**[`with_stem()`](#path-with_stemstem)**__,__'
+**[`with_suffix`](#path-with_suffixsuffix)**__,__'
+**[`write_bytes()`](#contents)**__,__'
+**[`write_text()`](#contents)**
 
 #### Importing:
 ```python
@@ -188,6 +222,7 @@ Path('README.txt').with_suffix('')
 
 ---
 
+#### PurePosixPath
 *class* pathlib.**PurePosixPath**(*pathsegments)
 ```python
 from pathlib import PurePosixPath
@@ -196,6 +231,7 @@ PurePosixPath('/etc')
 # PurePosixPath('/etc')
 ```
 
+#### PureWindowsPath
 *class* pathlib.**PureWindowsPath**(*pathsegments)
 
 ```python
