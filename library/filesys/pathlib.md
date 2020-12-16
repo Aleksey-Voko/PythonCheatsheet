@@ -1,7 +1,7 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
 **&nbsp;&nbsp;&nbsp;**
-**[`Opening a file`](#Opening a file:)**__,__
+**[`Opening a file`](#Opening a file)**__,__
 
 #### Importing:
 ```python
@@ -55,7 +55,8 @@ list(<path>.rglob('*.py'))     # in directory tree
 Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 ```
 
-#### Opening a file:
+Opening a file
+--------------
 ```python
 Path.open(mode='r', buffering=-1, encoding=None, errors=None, newline=None)
 # example
