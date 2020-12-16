@@ -1,5 +1,7 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
+**[`with_suffix()`](#Path with_suffix(suffix):)**__,__
+
 #### Importing:
 ```python
 from pathlib import Path
@@ -173,7 +175,7 @@ Path('c:/Downloads/pathlib.tar.gz').with_stem('lib')
 # Path('c:/Downloads/lib.gz')
 ```
 
-#### Path with_suffix(suffix)
+#### Path with_suffix(suffix):
 ```python
 Path('c:/Downloads/pathlib.tar.gz').with_suffix('.bz2')
 # Path('c:/Downloads/pathlib.tar.bz2')
