@@ -1,6 +1,6 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
-**[`with_suffix()`](#Path with_suffix(suffix):)**__,__
+**[`with_suffix`](#Path with_suffix(suffix):)**__,__
 
 #### Importing:
 ```python
