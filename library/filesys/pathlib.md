@@ -1,7 +1,7 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
 **&nbsp;&nbsp;&nbsp;**
-**[`Opening a file`](#opening-a-file:)**__,__
+**[`Opening a file`](#opening-a-file)**__,__
 
 #### Importing:
 ```python
