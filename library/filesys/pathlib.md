@@ -104,7 +104,7 @@ Path('c:').joinpath('/Program Files')        # <path>('c:/Program Files')
 <iter> = <path>.glob('*.py')                 # in directory
 <iter> = <path>.glob('**/*.py')              # in directory tree
 <iter> = <path>.rglob('*.py')                # in directory tree
-<iter> = <path>.iterdir()                    # Files and folders
+<iter> = <path>.iterdir()                    # files and folders
 
 # Listing subdirectories:
 [x for x in <path>.iterdir() if x.is_dir()]
@@ -187,7 +187,7 @@ Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 
 ---
 
-#### PurePosixPath
+#### PurePosixPath:
 *class* pathlib.**PurePosixPath**(*pathsegments)
 ```python
 from pathlib import PurePosixPath
@@ -198,7 +198,7 @@ PurePosixPath('/etc')
 
 ---
 
-#### PureWindowsPath
+#### PureWindowsPath:
 *class* pathlib.**PureWindowsPath**(*pathsegments)
 
 ```python
