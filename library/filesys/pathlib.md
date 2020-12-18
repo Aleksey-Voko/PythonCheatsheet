@@ -47,36 +47,36 @@ from pathlib import Path
 
 #### Get path:
 ```python
-<path> = Path()                     # current directory
-<path> = Path('.')                  # current directory
-<path> = Path.cwd()                 # current directory
-<path> = Path.home()                # user’s home directory
-<path> = Path('setup.py')           # <path>('setup.py')
-<path> = Path('foo/some/path')      # <path>('foo/some/path')
-<path> = Path('foo', 'some/path')   # <path>('foo/some/path')
-<path> = Path('foo', Path('some'))  # <path>('foo/some')
+<path> = Path()                              # current directory
+<path> = Path('.')                           # current directory
+<path> = Path.cwd()                          # current directory
+<path> = Path.home()                         # user’s home directory
+<path> = Path('setup.py')                    # <path>('setup.py')
+<path> = Path('foo/some/path')               # <path>('foo/some/path')
+<path> = Path('foo', 'some/path')            # <path>('foo/some/path')
+<path> = Path('foo', Path('some'))           # <path>('foo/some')
 ```
 
 #### Navigating:
 ```python
-<path> / 'init.d'                           # <path>('<path>/init.d')
-<path> / 'init.d/reboot'                    # <path>('<path>/init.d/reboot')
-<path> / 'init.d' / 'reboot'                # <path>('<path>/init.d/reboot')
+<path> / 'init.d'                            # <path>('<path>/init.d')
+<path> / 'init.d/reboot'                     # <path>('<path>/init.d/reboot')
+<path> / 'init.d' / 'reboot'                 # <path>('<path>/init.d/reboot')
 
-Path('/etc').joinpath('passwd')             # <path>('/etc/passwd')
-Path('/etc').joinpath(Path('passwd'))       # <path>('/etc/passwd')
-Path('/etc').joinpath('init.d', 'apache2')  # <path>('/etc/init.d/apache2')
-Path('c:').joinpath('/Program Files')       # <path>('c:/Program Files')
+Path('/etc').joinpath('passwd')              # <path>('/etc/passwd')
+Path('/etc').joinpath(Path('passwd'))        # <path>('/etc/passwd')
+Path('/etc').joinpath('init.d', 'apache2')   # <path>('/etc/init.d/apache2')
+Path('c:').joinpath('/Program Files')        # <path>('c:/Program Files')
 ```
 
 #### Directory contents:
 ```python
 # Listing files:
-<iter> = <path>.glob('*.py')     # in directory
-<iter> = <path>.glob('**/*.py')  # in directory tree
-<iter> = <path>.rglob('*.py')    # in directory tree
+<iter> = <path>.glob('*.py')                 # in directory
+<iter> = <path>.glob('**/*.py')              # in directory tree
+<iter> = <path>.rglob('*.py')                # in directory tree
 
-<iter> = <path>.iterdir()        # Files and folders
+<iter> = <path>.iterdir()                    # Files and folders
 
 # Listing subdirectories:
 [x for x in <path>.iterdir() if x.is_dir()]
@@ -92,8 +92,8 @@ with <path>.open() as f:
 
 #### Create and remove:
 ```python
-<path>.touch(mode=0o666, exist_ok=True)  # create file
-<path>.unlink(missing_ok=False)          # remove file or symbolic link
+<path>.touch(mode=0o666, exist_ok=True)      # create file
+<path>.unlink(missing_ok=False)              # remove file or symbolic link
 
 # create directory
 <path>.mkdir(mode=0o777, parents=False, exist_ok=False)
@@ -128,17 +128,17 @@ Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 
 #### Properties:
 ```python
-<bool> = <path>.exists()           # Whether this path exists
-<bool> = <path>.is_dir()           # Whether this path is a directory
-<bool> = <path>.is_file()          # Whether this path is a file
-<bool> = <path>.is_absolute()      # Whether this path is absolute
-<bool> = <path>.is_reserved()      # Whether this path reserved
-<bool> = <path>.is_mount()         # Whether this path is a mount point
-<bool> = <path>.is_symlink()       # Whether this path is a symbolic link
-<bool> = <path>.is_socket()        # Whether this path is a Unix socket
-<bool> = <path>.is_fifo()          # Whether this path is a FIFO
-<bool> = <path>.is_block_device()  # Whether this path is a block device
-<bool> = <path>.is_char_device()   # Whether this path is a character device
+<bool> = <path>.exists()                     # Whether this path exists
+<bool> = <path>.is_dir()                     # Whether this path is a directory
+<bool> = <path>.is_file()                    # Whether this path is a file
+<bool> = <path>.is_absolute()                # Whether this path is absolute
+<bool> = <path>.is_reserved()                # Whether this path reserved
+<bool> = <path>.is_mount()                   # Whether this path is a mount point
+<bool> = <path>.is_symlink()                 # Whether this path is a symbolic link
+<bool> = <path>.is_socket()                  # Whether this path is a Unix socket
+<bool> = <path>.is_fifo()                    # Whether this path is a FIFO
+<bool> = <path>.is_block_device()            # Whether this path is a block device
+<bool> = <path>.is_char_device()             # Whether this path is a character device
 ```
 
 #### Methods:
