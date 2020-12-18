@@ -1,42 +1,63 @@
 # Cheatsheet [pathlib](https://docs.python.org/3/library/pathlib.html) — Object-oriented filesystem paths
 
-**[`as_posix()`](#path-as_posix)**__,__
-**[`as_uri()`](#path-as_uri)**__,__
+**[`anchor`](#attributes)**__,__
+**[`as_posix()`](#methods)**__,__
+**[`as_uri()`](#methods)**__,__
+**[`chmod()`](#actions)**__,__
 **[`cwd()`](#get-path)**__,__
-**[`drive`](#other)**__,__
-**[`exists()`](#path-properties)**__,__
-**[`glob()`](#listing-files)**__,__
+**[`drive`](#attributes)**__,__
+**[`exists()`](#properties)**__,__
+**[`expanduser()`](#methods)**__,__
+**[`glob()`](#directory-contents)**__,__
+**[`group()`](#attributes)**__,__
 **[`home()`](#get-path)**__,__
-**[`is_dir()`](#path-properties)**__,__
-**[`is_file()`](#path-properties)**__,__
-**[`is_absolute()`](#path-properties)**__,__
-**[`is_relative_to()`](#path-properties)**__,__
-**[`is_reserved()`](#path-properties)**__,__
+**[`is_absolute()`](#properties)**__,__
+**[`is_block_device()`](#properties)**__,__
+**[`is_char_device()`](#properties)**__,__
+**[`is_dir()`](#properties)**__,__
+**[`is_fifo()`](#properties)**__,__
+**[`is_file()`](#properties)**__,__
+**[`is_mount()`](#properties)**__,__
+**[`is_relative_to()`](#properties)**__,__
+**[`is_reserved()`](#properties)**__,__
+**[`is_socket()`](#properties)**__,__
+**[`is_symlink()`](#properties)**__,__
 **[`iterdir()`](#directory-contents)**__,__
-**[`mkdir()`](#create-a-new-directory)**__,__
-**[`name`](#path-name)**__,__
+**[`joinpath()`](#navigating)**__,__
+**[`lchmod()`](#actions)**__,__
+**[`link_to()`](#actions)**__,__
+**[`lstat()`](#methods)**__,__
+**[`match()`](#properties)**__,__
+**[`mkdir()`](#actions)**__,__
+**[`name`](#attributes)**__,__
 **[`open()`](#opening-a-file)**__,__
-**[`parent`](#path-parent)**__,__
-**[`parents`](#path-parents)**__,__
-**[`parts`](#other)**__,__
+**[`owner()`](#attributes)**__,__
+**[`parent`](#attributes)**__,__
+**[`parents`](#attributes)**__,__
+**[`parts`](#attributes)**__,__
 **[`Path()`](#get-path)**__,__
 **[`PurePosixPath()`](#pureposixpath)**__,__
 **[`PureWindowsPath()`](#purewindowspath)**__,__
 **[`read_bytes()`](#contents)**__,__
 **[`read_text()`](#contents)**__,__
-**[`rename()`](#rename)**__,__
-**[`replace()`](#rename)**__,__
-**[`resolve()`](#make-the-path-absolute)**__,__
-**[`rmdir()`](#remove-empty-directory)**__,__
-**[`root`](#other)**__,__
-**[`samefile()`](#other)**__,__
-**[`stem`](#path-stem)**__,__
-**[`suffix`](#path-suffix)**__,__
-**[`suffixes`](#path-suffixes)**__,__
-**[`touch()`](#other)**__,__
-**[`with_name()`](#path-with_namename)**__,__
-**[`with_stem()`](#path-with_stemstem)**__,__
-**[`with_suffix`](#path-with_suffixsuffix)**__,__
+**[`readlink()`](#methods)**__,__
+**[`relative_to()`](#methods)**__,__
+**[`replace()`](#actions)**__,__
+**[`resolve()`](#methods)**__,__
+**[`rglob()`](#directory-contents)**__,__
+**[`rmdir()`](#actions)**__,__
+**[`root`](#attributes)**__,__
+**[`samefile()`](#properties)**__,__
+**[`stat()`](#methods)**__,__
+**[`stem`](#attributes)**__,__
+**[`suffix`](#attributes)**__,__
+**[`suffixes`](#attributes)**__,__
+**[`symlink_to()`](#actions)**__,__
+**[`touch()`](#actions)**__,__
+**[`unlink()`](#actions)**__,__
+**[`with_name()`](#methods)**__,__
+**[`with_stem()`](#methods)**__,__
+**[`with_suffix()`](#methods)**__,__
 **[`write_bytes()`](#contents)**__,__
 **[`write_text()`](#contents)**
 
@@ -69,13 +90,20 @@ Path('/etc').joinpath('init.d', 'apache2')   # <path>('/etc/init.d/apache2')
 Path('c:').joinpath('/Program Files')        # <path>('c:/Program Files')
 ```
 
+#### Contents:
+```python
+<bytes> = <path>.read_bytes()                         # read binary contents
+<path>.write_bytes(data)                              # write binary contents
+<str> = <path>.read_text(encoding=None, errors=None)  # read string contents
+<path>.write_text(data, encoding=None, errors=None)   # write string contents
+```
+
 #### Directory contents:
 ```python
 # Listing files:
 <iter> = <path>.glob('*.py')                 # in directory
 <iter> = <path>.glob('**/*.py')              # in directory tree
 <iter> = <path>.rglob('*.py')                # in directory tree
-
 <iter> = <path>.iterdir()                    # Files and folders
 
 # Listing subdirectories:
@@ -90,26 +118,21 @@ with <path>.open() as f:
     f.readline()
 ```
 
-#### Create and remove:
+#### Actions:
 ```python
-<path>.touch(mode=0o666, exist_ok=True)      # create file
-<path>.unlink(missing_ok=False)              # remove file or symbolic link
-
 # create directory
 <path>.mkdir(mode=0o777, parents=False, exist_ok=False)
 # example:
 Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 
-# remove empty directory
-<path>.rmdir()
-```
-
-#### Contents:
-```python
-<bytes> = <path>.read_bytes()                         # read binary contents
-<path>.write_bytes(data)                              # write binary contents
-<str> = <path>.read_text(encoding=None, errors=None)  # read string contents
-<path>.write_text(data, encoding=None, errors=None)   # write string contents
+<path>.touch(mode=0o666, exist_ok=True)      # create file
+<path>.replace(target)                       # rename file or directory
+<path>.unlink(missing_ok=False)              # remove file or symbolic link
+<path>.rmdir()                               # remove empty directory
+<path>.chmod(0o444)                          # change permissions
+<path>.lchmod(0o444)                         # change permissions for symbolic link
+<path>.link_to(target)                       # create a hard link to the target
+<path>.symlink_to(target)                    # make this path a symbolic link to target:
 ```
 
 #### Attributes:
@@ -124,69 +147,45 @@ Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 <str>  = Path('c:/Program Files/').drive     # 'c:'
 <str>  = Path('c:/Program Files/').root      # '\\'
 <str>  = Path('c:/Program Files/').anchor    # 'c:\\'
+<str>  = <path>.owner()                      # owner username
+<str>  = <path>.group()                      # owner group name
 ```
 
 #### Properties:
 ```python
-<bool> = <path>.exists()                     # Whether this path exists
-<bool> = <path>.is_dir()                     # Whether this path is a directory
-<bool> = <path>.is_file()                    # Whether this path is a file
-<bool> = <path>.is_absolute()                # Whether this path is absolute
-<bool> = <path>.is_reserved()                # Whether this path reserved
-<bool> = <path>.is_mount()                   # Whether this path is a mount point
-<bool> = <path>.is_symlink()                 # Whether this path is a symbolic link
-<bool> = <path>.is_socket()                  # Whether this path is a Unix socket
-<bool> = <path>.is_fifo()                    # Whether this path is a FIFO
-<bool> = <path>.is_block_device()            # Whether this path is a block device
-<bool> = <path>.is_char_device()             # Whether this path is a character device
+<bool> = <path>.exists()                     # whether this path exists
+<bool> = <path>.is_dir()                     # whether this path is a directory
+<bool> = <path>.is_file()                    # whether this path is a file
+<bool> = <path>.is_absolute()                # whether this path is absolute
+<bool> = <path>.is_reserved()                # whether this path reserved
+<bool> = <path>.is_mount()                   # whether this path is a mount point
+<bool> = <path>.is_symlink()                 # whether this path is a symbolic link
+<bool> = <path>.is_socket()                  # whether this path is a Unix socket
+<bool> = <path>.is_fifo()                    # whether this path is a FIFO
+<bool> = <path>.is_block_device()            # whether this path is a block device
+<bool> = <path>.is_char_device()             # whether this path is a character device
+<bool> = <path>.match('*.py')                # does it match the pattern
+<bool> = <path>.is_relative_to(*other)       # whether this path is relative to another path
+<bool> = <path>.samefile(other_path)         # does this path point to the same file
 ```
 
 #### Methods:
 ```python
-<stat> = <path>.stat()                          # Return a os.stat_result object
-<stat> = <path>.lstat()                         # symbolic link
-
-<path> = Path('bar/egg.py').resolve()           # <path>('/home/u_name/foo/bar/egg.py')
-<path> = Path('~/foo/egg.py').expanduser()      # <path>('/home/u_name/foo/egg.py')
-<str>  = Path('c:\\windows').as_posix()         # 'c:/windows'
-<str>  = Path('/etc/passwd').as_uri()           # 'file:///etc/passwd'
-<str>  = Path('c:/Windows').as_uri()            # 'file:///c:/Windows'
-<path> = Path('foo/egg.py').with_name('lib.py') # Path('foo/lib.py')
-<path> = Path('foo/egg.py').with_stem('lib')    # Path('foo/lib.py')
-<path> = Path('foo/egg.gz').with_suffix('.bz2') # Path('foo/egg.bz2')
-
-<path> = Path('/etc/passwd').relative_to('/')   # Path('etc/passwd')g
-
-<str>  = <path>.group()                         # owner group name
-<str>  = <path>.owner()                         # owner username
-
-<path> = <path>.readlink()                      # path to which the symbolic link points
-
-<path>.samefile(other_path)  # Does this path point to the same file:
-
-< path > ('a/b.py').match('*.py')  # If pattern is relative
-< path > ('/a.py').match('/*.py')  # If pattern is absolute
-
-<bool> = <path>.is_relative_to(*other)   # Whether this path is relative to another path
+<path> = Path('bar/egg.py').resolve()        # <path>('/home/u_name/f/bar/egg.py')
+<path> = Path('~/f/egg.py').expanduser()     # <path>('/home/u_name/f/egg.py')
+<str>  = Path('c:\\windows').as_posix()      # 'c:/windows'
+<str>  = Path('/etc/passwd').as_uri()        # 'file:///etc/passwd'
+<str>  = Path('c:/Windows').as_uri()         # 'file:///c:/Windows'
+<path> = Path('f/e.py').with_name('lib.h')   # Path('f/lib.h')
+<path> = Path('f/e.py').with_stem('lib')     # Path('f/lib.py')
+<path> = Path('f/e.gz').with_suffix('.bz2')  # Path('f/e.bz2')
+<path> = Path('/etc/user').relative_to('/')  # Path('etc/user')
+<path> = <path>.readlink()                   # path to which the symbolic link points
+<stat> = <path>.stat()                       # os.stat_result for path
+<stat> = <path>.lstat()                      # os.stat_result for link
 ```
 
-#### Actions:
-```python
-<path>.replace(target)           # rename file
-
-# Change the file mode and permissions:
-< path >.chmod(0o444)
-< path >.lchmod(0o444)  # symbolic link
-
-# Make this path a symbolic link to target:
-< path >.symlink_to(target, target_is_directory=False)
-# example:
-Path('mylink').symlink_to('setup.py').resolve()
-# PosixPath('/home/antoine/pathlib/setup.py')
-
-# Create a hard link pointing to a path named target:
-< path >.link_to(target)
-```
+---
 
 #### PurePosixPath
 *class* pathlib.**PurePosixPath**(*pathsegments)
@@ -196,6 +195,8 @@ from pathlib import PurePosixPath
 PurePosixPath('/etc')
 # PurePosixPath('/etc')
 ```
+
+---
 
 #### PureWindowsPath
 *class* pathlib.**PureWindowsPath**(*pathsegments)
