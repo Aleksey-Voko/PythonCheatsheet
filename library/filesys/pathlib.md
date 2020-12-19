@@ -61,6 +61,8 @@
 **[`write_bytes()`](#contents)**__,__
 **[`write_text()`](#contents)**
 
+**[`Recipes`](#recipes)**
+
 #### Importing:
 ```python
 from pathlib import Path
@@ -120,12 +122,9 @@ with <path>.open() as f:
 
 #### Actions:
 ```python
-# create directory
-<path>.mkdir(mode=0o777, parents=False, exist_ok=False)
-# example:
-Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
-
 <path>.touch(mode=0o666, exist_ok=True)      # create file
+<path>.mkdir(mode=0o777, parents=False,
+    exist_ok=False)                          # create directory
 <path>.replace(target)                       # rename file or directory
 <path>.unlink(missing_ok=False)              # remove file or symbolic link
 <path>.rmdir()                               # remove empty directory
@@ -171,8 +170,8 @@ Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 
 #### Methods:
 ```python
-<path> = Path('bar/egg.py').resolve()        # <path>('/home/u_name/f/bar/egg.py')
-<path> = Path('~/f/egg.py').expanduser()     # <path>('/home/u_name/f/egg.py')
+<path> = Path('bar/egg.py').resolve()        # get absolute path
+<path> = Path('~/f/egg.py').expanduser()     # get absolute path
 <str>  = Path('c:\\windows').as_posix()      # 'c:/windows'
 <str>  = Path('/etc/passwd').as_uri()        # 'file:///etc/passwd'
 <str>  = Path('c:/Windows').as_uri()         # 'file:///c:/Windows'
@@ -181,8 +180,19 @@ Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
 <path> = Path('f/e.gz').with_suffix('.bz2')  # Path('f/e.bz2')
 <path> = Path('/etc/user').relative_to('/')  # Path('etc/user')
 <path> = <path>.readlink()                   # path to which the symbolic link points
+
 <stat> = <path>.stat()                       # os.stat_result for path
 <stat> = <path>.lstat()                      # os.stat_result for link
+<int>  = <path>.stat().st_size               # size of the file in bytes
+<int>  = <path>.stat().st_mode               # file type and file mode bits (permissions)
+<int>  = <path>.stat().st_ino                # inode number (Unix) or file index (Windows)
+<int>  = <path>.stat().st_dev                # identifier of the device on which this file resides
+<int>  = <path>.stat().st_nlink              # number of hard links
+<int>  = <path>.stat().st_uid                # user identifier of the file owner
+<int>  = <path>.stat().st_gid                # group identifier of the file owner
+<int>  = <path>.stat().st_atime              # time of most recent access expressed in seconds
+<int>  = <path>.stat().st_mtime              # time of most recent content modification expressed in seconds
+<int>  = <path>.stat().st_ctime              # time of most recent metadata change (Unix), the time of creation (Windows)
 ```
 
 ---
@@ -206,4 +216,20 @@ from pathlib import PureWindowsPath
 
 PureWindowsPath('c:/Program Files/')
 # PureWindowsPath('c:/Program Files')
+```
+
+---
+
+#### Recipes:
+```python
+# create directory:
+Path('parent/dir_name').mkdir(parents=True, exist_ok=True)
+```
+
+```python
+# copy file:
+in_file = Path('in_file.txt')
+out_file = Path('out_file.txt')
+out_file.parent.mkdir(parents=True, exist_ok=True)
+out_file.write_bytes(in_file.read_bytes())
 ```
