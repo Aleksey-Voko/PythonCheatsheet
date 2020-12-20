@@ -1,5 +1,36 @@
 # Cheatsheet [os.path](https://docs.python.org/3/library/os.path.html) — Common pathname manipulations
 
+**[`abspath`](#methods)**__,__
+**[`basename`](#methods)**__,__
+**[`commonpath`](#methods)**__,__
+**[`commonprefix`](#methods)**__,__
+**[`dirname`](#methods)**__,__
+**[`exists`](#properties)**__,__
+**[`expanduser`](#methods)**__,__
+**[`expandvars`](#methods)**__,__
+**[`getatime`](#methods)**__,__
+**[`getctime`](#methods)**__,__
+**[`getmtime`](#methods)**__,__
+**[`getsize`](#methods)**__,__
+**[`isabs`](#properties)**__,__
+**[`isdir`](#properties)**__,__
+**[`isfile`](#properties)**__,__
+**[`islink`](#properties)**__,__
+**[`ismount`](#properties)**__,__
+**[`join`](#methods)**__,__
+**[`lexists`](#properties)**__,__
+**[`normcase`](#methods)**__,__
+**[`normpath`](#methods)**__,__
+**[`realpath`](#methods)**__,__
+**[`relpath`](#methods)**__,__
+**[`samefile`](#properties)**__,__
+**[`sameopenfile`](#properties)**__,__
+**[`samestat`](#properties)**__,__
+**[`split`](#methods)**__,__
+**[`splitdrive`](#methods)**__,__
+**[`splitext`](#methods)**__,__
+**[`supports_unicode_filenames`](#properties)**
+
 #### Importing:
 ```python
 from os import path
@@ -29,7 +60,7 @@ from os import path
 <str> = path.basename('foo/bar/egg.py')     # 'egg.py'
 <str> = path.dirname('foo/bar/egg.py')      # 'foo/bar'
 
-<str>  = path.join(<path>, *<paths>)         # connecting path components
+<str>  = path.join(<path>, *<paths>)        # connecting path components
 <iter> = path.split(<path>)                 # split the pathname path into a pair (head, tail)
 <iter> = path.splitdrive(<path>)            # split the pathname path into a pair (drive, tail)
 <iter> = path.splitext(<path>)              # split the pathname path into a pair (root, ext)
