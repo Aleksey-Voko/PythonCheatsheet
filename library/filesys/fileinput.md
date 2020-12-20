@@ -1,5 +1,17 @@
 # Cheatsheet [fileinput](https://docs.python.org/3/library/fileinput.html) — Iterate over lines from multiple input streams
 
+**[`close()`](#methods)**__,__
+**[`filelineno()`](#methods)**__,__
+**[`filename()`](#methods)**__,__
+**[`fileno()`](#methods)**__,__
+**[`input()`](#basic-use)**__,__
+**[`isfirstline()`](#properties)**__,__
+**[`isstdin()`](#properties)**__,__
+**[`lineno()`](#methods)**__,__
+**[`nextfile()`](#methods)**
+
+**[`Recipes`](#recipes)**
+
 #### Importing:
 ```python
 import fileinput
@@ -30,6 +42,7 @@ with fileinput.input(files=files_list) as f:
 <int> = <fileinput>.fileno()        # current file descriptor
 <int> = <fileinput>.lineno()        # current line number
 <int> = <fileinput>.filelineno()    # line number in the current file
+
 <fileinput>.nextfile()              # go to next file
 <fileinput>.close()                 # close the sequence
 ```
