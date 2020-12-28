@@ -73,6 +73,8 @@ from pathlib import Path
 <path> = Path()                              # current directory
 <path> = Path('.')                           # current directory
 <path> = Path.cwd()                          # current directory
+<path> = Path(__file__)                      # running module file
+<path> = Path(__file__).parent               # directory of the running module
 <path> = Path.home()                         # user’s home directory
 <path> = Path('setup.py')                    # <path>('setup.py')
 <path> = Path('foo/some/path')               # <path>('foo/some/path')
