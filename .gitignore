@@ -161,4 +161,5 @@ crashlytics-build.properties
 fabric.properties
 
 # user
+tmpl/
 tmpl.py
