@@ -51,8 +51,3 @@ assertListEqual(a, b) | lists
 assertTupleEqual(a, b) | tuples
 assertSetEqual(a, b) | sets or frozensets
 assertDictEqual(a, b) | dicts
-
-#### Example:
-[Calculator](calculator.py)  
-[TestCalculator](test_calculator.py)  
-[TestSuite](test_suite.py)  
