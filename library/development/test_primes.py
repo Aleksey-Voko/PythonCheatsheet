@@ -93,6 +93,7 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTests(unittest.makeSuite(TestPrimes))
     suite.addTests(unittest.makeSuite(TestOther))
+    suite.addTests(unittest.makeSuite(TestOtherSkip))
 
     return suite
 
