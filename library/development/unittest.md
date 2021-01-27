@@ -51,3 +51,9 @@ assertListEqual(a, b) | lists
 assertTupleEqual(a, b) | tuples
 assertSetEqual(a, b) | sets or frozensets
 assertDictEqual(a, b) | dicts
+
+---
+
+#### Example:
+[primes.py](primes.py) - class under test  
+[test_primes.py](test_primes.py) - class template with tests
